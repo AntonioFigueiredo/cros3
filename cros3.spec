@@ -1,5 +1,5 @@
 #
-# The spec file for package cros3
+# spec file for package cros3
 #
 
 Name:			cros3
