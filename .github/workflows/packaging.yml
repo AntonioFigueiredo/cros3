@@ -43,7 +43,7 @@ jobs:
           args: source_dir/.scripts/buildpkg.sh
 
       - name: Upload Package
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ runner.os }}-${{ env.RELEASE }}-debpkg
           path: debian/output/*
@@ -77,7 +77,7 @@ jobs:
           report_individual_runs: true
 
       - name: Upload Lintian results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: ${{ runner.os }}-${{ env.RELEASE }}-lintian
@@ -131,7 +131,7 @@ jobs:
           args: source_dir/.scripts/prepaptly.sh
 
       - name: Upload Repo
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ runner.os }}-${{ env.RELEASE }}-repo
           path: debrepo.tar.gz
