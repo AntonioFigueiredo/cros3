@@ -144,9 +144,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        container: 
-          - "centos:7"
-          - "centos:8"
+        container:
+          - "rockylinux:9"
 
     container:
       image: ${{ matrix.container }}
