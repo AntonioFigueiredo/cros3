@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: source_dir
 
@@ -35,6 +35,9 @@ jobs:
       #  with:
       #    entrypoint: /bin/bash
       #    args: source_dir/.scripts/rungbp.sh
+
+      - name: Configure Git Safe Directory
+        run: git config --global --add safe.directory /github/workspace/debian/output/source_dir
 
       - name: Build Package
         uses: docker://registry.salsa.debian.org/salsa-ci-team/pipeline/gbp:latest
