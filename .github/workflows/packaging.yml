@@ -40,10 +40,10 @@ jobs:
         uses: docker://registry.salsa.debian.org/salsa-ci-team/pipeline/gbp:latest
         with:
           entrypoint: /bin/bash
-          args: |
-            git config --global --add safe.directory /github/workspace/source_dir
-            git config --global --add safe.directory /github/workspace/debian/output/source_dir
-            source_dir/.scripts/buildpkg.sh
+          args: -c
+            "git config --global --add safe.directory /github/workspace/source_dir" &&
+            "git config --global --add safe.directory /github/workspace/debian/output/source_dir" &&
+            "source_dir/.scripts/buildpkg.sh"
 
       - name: Upload Package
         uses: actions/upload-artifact@v4
