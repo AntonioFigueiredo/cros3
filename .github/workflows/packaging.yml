@@ -40,10 +40,9 @@ jobs:
         uses: docker://registry.salsa.debian.org/salsa-ci-team/pipeline/gbp:latest
         with:
           entrypoint: /bin/bash
-          args: >
-            -c
-            "git config --global --add safe.directory /github/workspace/source_dir;
-            git config --global --add safe.directory /github/workspace/debian/output/source_dir;
+          args: -c
+            "git config --global --add safe.directory /github/workspace/source_dir" &&
+            git config --global --add safe.directory /github/workspace/debian/output/source_dir" &&
             source_dir/.scripts/buildpkg.sh"
 
       - name: Upload Package
@@ -70,8 +69,8 @@ jobs:
         uses: docker://registry.salsa.debian.org/salsa-ci-team/pipeline/lintian:testing
         with:
           entrypoint: /bin/bash
-          args: -c "mkdir -p Linux-unstable-debpkg" &&
-            "mv Linux-unstable-debpkg/*.changes Linux-unstable-debpkg/ 2>/dev/null || true" &&
+          args: -c "mkdir -p Linux-${{ env.RELEASE }}-debpkg" &&
+            "mv Linux-${{ env.RELEASE }}-debpkg/*.changes Linux-${{ env.RELEASE }}-debpkg/ 2>/dev/null || true" &&
             "source_dir/.scripts/runlintian.sh"
 
       - name: Publish Lintian Results
