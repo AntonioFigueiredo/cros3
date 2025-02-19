@@ -63,7 +63,7 @@ jobs:
           path: source_dir
 
       - name: Download all Debian packaging workflow run artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
 
       - name: Run Lintian on ${{ env.RELEASE }}
         uses: docker://registry.salsa.debian.org/salsa-ci-team/pipeline/lintian:testing
