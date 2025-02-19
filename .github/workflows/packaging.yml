@@ -44,7 +44,6 @@ jobs:
             -c
             "git config --global --add safe.directory /github/workspace/source_dir;
             git config --global --add safe.directory /github/workspace/debian/output/source_dir;
-            source_dir/.scripts/rungbp.sh
             source_dir/.scripts/buildpkg.sh"
 
       - name: Upload Package
