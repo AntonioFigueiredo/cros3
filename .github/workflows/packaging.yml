@@ -69,7 +69,9 @@ jobs:
         uses: docker://registry.salsa.debian.org/salsa-ci-team/pipeline/lintian:testing
         with:
           entrypoint: /bin/bash
-          args: source_dir/.scripts/runlintian.sh
+          args: -c "mkdir -p Linux-unstable-debpkg" &&
+            "mv Linux-unstable-debpkg/*.changes Linux-unstable-debpkg/ 2>/dev/null || true" &&
+            "source_dir/.scripts/runlintian.sh"
 
       - name: Publish Lintian Results
         uses: EnricoMi/publish-unit-test-result-action@v1.7
