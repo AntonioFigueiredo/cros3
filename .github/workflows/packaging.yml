@@ -37,7 +37,7 @@ jobs:
       #    args: source_dir/.scripts/rungbp.sh
 
       - name: Configure Git Safe Directory
-        run: git config --global --add safe.directory /github/workspace/debian/output/source_dir
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE/source_dir"
       
       - name: List Git Config
         run: git config --global --list
@@ -45,10 +45,12 @@ jobs:
       - name: Debug Environment
         run: |
           echo "Current directory: $(pwd)"
-          echo "Directory listing:"
-          ls -la /github/workspace/debian/output/source_dir
+          echo "Workspace contents:"
+          ls -la "$GITHUB_WORKSPACE"
+          echo "Source directory contents:"
+          ls -la "$GITHUB_WORKSPACE/source_dir"
           echo "Git status:"
-          git -C /github/workspace/debian/output/source_dir status
+          git -C "$GITHUB_WORKSPACE/source_dir" status
 
       - name: Build Package
         uses: docker://registry.salsa.debian.org/salsa-ci-team/pipeline/gbp:latest
