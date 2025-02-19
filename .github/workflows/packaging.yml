@@ -42,9 +42,7 @@ jobs:
           entrypoint: /bin/bash
           args: -c
             "git config --global --add safe.directory /github/workspace/source_dir" &&
-            "git config --global --add safe.directory /github/workspace/debian/output/source_dir" &&
-            "source_dir/.scripts/buildpkg.sh" &&
-            "ls -al debian/output/"
+            "source_dir/.scripts/buildpkg.sh"
 
       - name: Upload Package
         uses: actions/upload-artifact@v4
