@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: source_dir
 
@@ -22,7 +22,7 @@ jobs:
           echo "datetime=$(/bin/date --iso-8601=seconds)" >> $GITHUB_OUTPUT
         shell: bash
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: .ccache
           key: ${{ runner.os }}-${{ env.RELEASE }}-ccache-${{ steps.get-time.outputs.datetime }}

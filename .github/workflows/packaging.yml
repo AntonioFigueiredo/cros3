@@ -41,6 +41,8 @@ jobs:
         with:
           entrypoint: /bin/bash
           args: -c
+            "echo "deb http://deb.debian.org/debian unstable main" > /etc/apt/sources.list" &&
+            "apt-get update" &&
             "git config --global --add safe.directory /github/workspace/source_dir" &&
             git config --global --add safe.directory /github/workspace/debian/output/source_dir" &&
             source_dir/.scripts/buildpkg.sh"
@@ -112,6 +114,9 @@ jobs:
 
       - name: Download all Debian packaging workflow run artifacts
         uses: actions/download-artifact@v4
+
+      - name: Install DKMS
+        run: apt-get update && apt-get install -y dkms
 
       - name: Install package and compile on ${{ matrix.container }}
         run: ./source_dir/.scripts/testdkms.sh
