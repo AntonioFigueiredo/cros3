@@ -40,12 +40,7 @@ jobs:
         uses: docker://registry.salsa.debian.org/salsa-ci-team/pipeline/gbp:latest
         with:
           entrypoint: /bin/bash
-          args: -c
-            "echo "deb http://deb.debian.org/debian unstable main" > /etc/apt/sources.list" &&
-            "apt-get update" &&
-            "git config --global --add safe.directory /github/workspace/source_dir" &&
-            git config --global --add safe.directory /github/workspace/debian/output/source_dir" &&
-            source_dir/.scripts/buildpkg.sh"
+          args: source_dir/.scripts/buildpkg.sh
 
       - name: Upload Package
         uses: actions/upload-artifact@v4
@@ -71,9 +66,10 @@ jobs:
         uses: docker://registry.salsa.debian.org/salsa-ci-team/pipeline/lintian:testing
         with:
           entrypoint: /bin/bash
-          args: -c "mkdir -p Linux-${{ env.RELEASE }}-debpkg" &&
-            "mv Linux-${{ env.RELEASE }}-debpkg/*.changes Linux-${{ env.RELEASE }}-debpkg/ 2>/dev/null || true" &&
-            "source_dir/.scripts/runlintian.sh"
+          # args: -c "mkdir -p Linux-${{ env.RELEASE }}-debpkg" &&
+          #  "mv Linux-${{ env.RELEASE }}-debpkg/*.changes Linux-${{ env.RELEASE }}-debpkg/ 2>/dev/null || true" &&
+          #  "source_dir/.scripts/runlintian.sh"
+          args: source_dir/.scripts/runlintian.sh
 
       - name: Publish Lintian Results
         uses: EnricoMi/publish-unit-test-result-action@v1.7
