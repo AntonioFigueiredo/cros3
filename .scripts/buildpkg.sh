@@ -33,7 +33,7 @@ apt-get update && eatmydata apt-get install --no-install-recommends -y \
      equivs \
      build-essential
 
-eatmydata install-build-deps.sh .
+eatmydata "${TOP_DIR}/source_dir/.scripts/install-build-deps.sh" .
 
 # Generate ccache links
 dpkg-reconfigure ccache
