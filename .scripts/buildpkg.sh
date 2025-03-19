@@ -33,8 +33,7 @@ apt-get update && eatmydata apt-get install --no-install-recommends -y \
      equivs \
      build-essential
 
-ls -la
-eatmydata install-build-deps.sh .
+eatmydata mk-build-deps --install --remove --tool "apt-get -o Debug::pkgProblemResolver=yes -y" debian/control
 
 # Generate ccache links
 dpkg-reconfigure ccache
