@@ -187,6 +187,19 @@ jobs:
           done
           echo '</body></html>' >> publish/lintian/index.html
 
+      - name: Create Root index.html
+        run: |
+          echo '<!DOCTYPE html>
+          <html>
+            <head>
+              <title>cros3 Packages</title>
+              <meta http-equiv="refresh" content="0; url=lintian/" />
+            </head>
+            <body>
+              Redirecting to <a href="lintian/">Lintian Reports</a>...
+            </body>
+          </html>' > publish/index.html
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         #if: endsWith(github.event.ref, '/master')
