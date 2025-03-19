@@ -31,8 +31,11 @@ apt-get update && eatmydata apt-get install --no-install-recommends -y \
      devscripts \
      ccache \
      equivs \
-     build-essential
+     build-essential \
+     dh-dkms \
+     dkms
 
+# Install build dependencies directly
 eatmydata mk-build-deps --install --remove --tool "apt-get -o Debug::pkgProblemResolver=yes -y" debian/control
 
 # Generate ccache links
