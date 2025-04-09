@@ -161,6 +161,24 @@ jobs:
 
       - name: Build RPM on ${{ matrix.container }}
         run: ./source_dir/.scripts/buildrpm.sh
+    
+  test-rpm:
+    needs: [ build-rpm ]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container:
+          - "rockylinux:9"
+      
+    container:
+      image: ${{ matrix.container }}
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: source_dir
+
 
   deploy-repos-and-data:
     needs: [ run-lintian, create-aptly-repo ]
