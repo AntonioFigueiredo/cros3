@@ -1,7 +1,10 @@
 #!/bin/bash -x
 
 yum install -y epel-release
-yum install -y gcc make rpm-build rpmdevtools dkms yum-utils kernel-devel kernel-abi-stablelists kernel-rpm-macros udev
+
+KERNEL_VER=$(uname -r)
+yum install -y "kernel-devel-${KERNEL_VER}"
+yum install -y gcc make rpm-build rpmdevtools dkms yum-utils kernel-abi-stablelists kernel-rpm-macros udev
 
 rpmdev-setuptree
 

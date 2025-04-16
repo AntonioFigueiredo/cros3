@@ -15,15 +15,13 @@ Kernel driver for the cros3 module
 %setup -q
 
 %build
-make -C /lib/modules/%{kernel_version}/build M=%{_builddir}/%{name}-%{version} modules
+make -C /lib/modules/$(uname -r)/build M=%{_builddir}/%{name}-%{version} modules
 
 %install
-mkdir -p %{buildroot}/lib/modules/%{kernel_version}/extra
-install -m 644 cros3.ko %{buildroot}/lib/modules/%{kernel_version}/extra/
+mkdir -p %{buildroot}/lib/modules/$(uname -r)/extra
+install -m 644 cros3.ko %{buildroot}/lib/modules/$(uname -r)/extra/
 
 %files
-/lib/modules/%{kernel_version}/extra/cros3.ko
+/lib/modules/$(uname -r)/extra/cros3.ko
 
 %changelog
-* Wed Apr 16 2025 Your Name <email@example.com> - 0.1-0
-- Initial package for Rocky Linux
