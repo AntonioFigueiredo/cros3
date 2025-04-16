@@ -1,10 +1,13 @@
 #!/bin/bash -x
 
-yum install -y gcc rpm-build rpm-devel rpmlint make bash diffutils patch rpmdevtools
+yum install -y gcc rpm-build rpm-devel rpmlint make bash diffutils patch rpmdevtools dkms
+
 rpmdev-setuptree
 
-mv source_dir/src cros3-0.1
-tar cjf cros3-0.1.tar.bz2 cros3-0.1
+VERSION="0.1"
+
+mv source_dir/src cros3-${VERSION}
+tar cjf cros3-${VERSION}.tar.bz2 cros3-${VERSION}
 cp *.tar.bz2 ~/rpmbuild/SOURCES/
 cp source_dir/*.spec .
 

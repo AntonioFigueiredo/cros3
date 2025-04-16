@@ -158,9 +158,18 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: source_dir
+      
+      - name: Install Build Dependencies
+        run: yum install -y epel-release gcc make rpm-build dkms
 
       - name: Build RPM on ${{ matrix.container }}
         run: ./source_dir/.scripts/buildrpm.sh
+
+      - name: Upload RPM Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: rpm-artifacts
+          path: ~/rpmbuild/RPMS/**/*.rpm
     
   test-rpm:
     needs: [ build-rpm ]
@@ -178,6 +187,18 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: source_dir
+          
+      - name: Download RPM Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: rpm-artifacts
+          path: pkgs/
+
+      - name: Install DKMS
+        run: yum install -y dkms
+  
+      - name: Install package and compile on ${{ matrix.container }}
+        run: ./source_dir/.scripts/testrpm.sh
 
 
   deploy-repos-and-data:
