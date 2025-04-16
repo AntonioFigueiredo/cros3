@@ -1,5 +1,6 @@
 #!/bin/bash -x
 
+yum install -y epel-release
 yum install -y gcc rpm-build rpm-devel rpmlint make bash diffutils patch rpmdevtools dkms
 
 rpmdev-setuptree
@@ -18,3 +19,7 @@ rpmbuild -ba cros3.spec
 cd ~
 find
 ls -la
+
+mkdir -p ${GITHUB_WORKSPACE}/rpm-artifacts
+cp -r ~/rpmbuild/RPMS ${GITHUB_WORKSPACE}/rpm-artifacts/
+cp -r ~/rpmbuild/SRPMS ${GITHUB_WORKSPACE}/rpm-artifacts/

@@ -66,9 +66,6 @@ jobs:
         uses: docker://registry.salsa.debian.org/salsa-ci-team/pipeline/lintian:testing
         with:
           entrypoint: /bin/bash
-          # args: -c "mkdir -p Linux-${{ env.RELEASE }}-debpkg" &&
-          #  "mv Linux-${{ env.RELEASE }}-debpkg/*.changes Linux-${{ env.RELEASE }}-debpkg/ 2>/dev/null || true" &&
-          #  "source_dir/.scripts/runlintian.sh"
           args: source_dir/.scripts/runlintian.sh
 
       - name: Publish Lintian Results
@@ -172,7 +169,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: rpm-artifacts
-          path: ~/rpmbuild/RPMS/**/*.rpm
+          path: ${{ github.workspace }}/rpm-artifacts/**/*.rpm
     
   test-rpm:
     needs: [ build-rpm ]
