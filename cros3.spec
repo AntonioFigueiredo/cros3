@@ -27,11 +27,13 @@ cp "$@" source/
 mkdir obj
 
 %build
-for flavor in %flavors_to_build; do
-        rm -rf obj/$flavor
-        cp -r source obj/$flavor
-        make -C %{kernel_source $flavor} modules M=$PWD/obj/$flavor
-done
+%for flavor in %flavors_to_build; do
+%        rm -rf obj/$flavor
+%        cp -r source obj/$flavor
+%        make -C %{kernel_source $flavor} modules M=$PWD/obj/$flavor
+%done
+# For single kernel flavor
+make -C /lib/modules/%{kernel_version}/build M=%{_builddir}/%{name}-%{version}/obj modules
 
 %install
 %if 0%{?suse_version} >= 1230
