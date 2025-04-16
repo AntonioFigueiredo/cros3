@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 yum install -y epel-release
-yum install -y gcc rpm-build rpm-devel rpmlint make bash diffutils patch rpmdevtools dkms
+yum install -y gcc make rpm-build rpmdevtools dkms yum-utils kernel-devel kernel-abi-stablelists kernel-rpm-macros udev
 
 rpmdev-setuptree
 
