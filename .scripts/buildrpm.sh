@@ -5,8 +5,6 @@ yum install -y gcc make rpm-build rpmdevtools dkms yum-utils kernel-devel kernel
 
 rpmdev-setuptree
 
-KERNEL_VER=$(uname -r)
-
 VERSION="0.1"
 
 mv source_dir/src cros3-${VERSION}
@@ -16,7 +14,7 @@ cp source_dir/*.spec .
 
 yum-builddep -y cros3.spec
 
-rpmbuild -ba --define "kernel_version ${KERNEL_VER}" cros3.spec
+rpmbuild -ba cros3.spec
 
 cd ~
 find
