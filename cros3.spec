@@ -15,13 +15,15 @@ Kernel driver for the cros3 module
 %setup -q
 
 %build
-make -C /lib/modules/%{kernel_version}/build M=$PWD modules
+KERNEL_VERSION=$(rpm -q --qf "%{VERSION}-%{RELEASE}.%{ARCH}" kernel-devel)
+make -C /usr/src/kernels/$KERNEL_VERSION M=$PWD modules
 
 %install
-mkdir -p %{buildroot}/lib/modules/%{kernel_version}/extra
-install -m 644 cros3.ko %{buildroot}/lib/modules/%{kernel_version}/extra/
+KERNEL_VERSION=$(rpm -q --qf "%{VERSION}-%{RELEASE}.%{ARCH}" kernel-devel)
+mkdir -p %{buildroot}/lib/modules/$KERNEL_VERSION/extra
+install -m 644 cros3.ko %{buildroot}/lib/modules/$KERNEL_VERSION/extra/
 
 %files
-/lib/modules/%{kernel_version}/extra/cros3.ko
+/lib/modules/*/extra/cros3.ko
 
 %changelog
