@@ -12,7 +12,7 @@ rpmdev-setuptree
 VERSION="0.1"
 
 mv source_dir/src cros3-${VERSION}
-tar cros3-${VERSION}.tar.bz2 cros3-${VERSION}
+tar -cvjf cros3-${VERSION}.tar.bz2 cros3-${VERSION}
 cp *.tar.bz2 ~/rpmbuild/SOURCES/
 cp source_dir/*.spec .
 
