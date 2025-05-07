@@ -157,10 +157,10 @@ jobs:
           path: source_dir
       
       - name: Install EPEL
-        run: yum install -y epel-release
+        run: dnf install -y epel-release
       
       - name: Install Build Tools
-        run: yum install -y gcc make rpm-build dkms
+        run: dnf install -y gcc make rpm-build dkms
 
       - name: Build RPM on ${{ matrix.container }}
         run: ./source_dir/.scripts/buildrpm.sh
