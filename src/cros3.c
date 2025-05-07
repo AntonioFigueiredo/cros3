@@ -295,7 +295,11 @@ static int __init cros3_init_module (void)
 	}
 	cros3_major = MAJOR(devreg);
 
+	#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0)
 	cros3_class = class_create(THIS_MODULE, "cros3");
+	#else
+	cros3_class = class_create("cros3");
+	#endif
 	if (IS_ERR(cros3_class)) {
 		printk (KERN_ERR "cros3: unable to create device class\n");
 		return -EIO;
