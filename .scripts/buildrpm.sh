@@ -4,6 +4,7 @@ set -e
 
 KERNEL_VER=$(uname -r)
 #dnf install -y "kernel-devel-${KERNEL_VER}"
+dnf install -y kernel-devel-$(uname -r) kernel-headers-$(uname -r)
 dnf install -y gcc make rpm-build rpmdevtools dkms dnf-utils kernel-abi-stablelists kernel-rpm-macros udev
 
 rpmdev-setuptree
