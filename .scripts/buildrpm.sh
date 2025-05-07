@@ -18,9 +18,6 @@ cp source_dir/*.spec .
 
 dnf builddep -y cros3.spec
 
-KERNEL_VERSION=$(uname -r)
-echo "DEBUG: installed kernel-devel:"
-rpm -q kernel-devel
 KERNEL_VERSION=$(rpm -q --qf '%{VERSION}-%{RELEASE}.%{ARCH}' kernel-devel)
 echo "DEBUG: Using KERNEL_VERSION=$KERNEL_VERSION"
 rpmbuild -ba cros3.spec --define "kernel_version ${KERNEL_VERSION}"
