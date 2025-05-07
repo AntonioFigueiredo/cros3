@@ -19,7 +19,7 @@ cp source_dir/*.spec .
 dnf builddep -y cros3.spec
 
 KERNEL_VERSION=$(uname -r)
-rpmbuild -ba cros3.spec
+rpmbuild -ba "$RPMBUILD_DIR/SPECS/cros3.spec" --define "kernel_version ${KERNEL_VERSION}"
 
 #cd ~
 #find
