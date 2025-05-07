@@ -1,10 +1,10 @@
 #!/bin/bash -x
 set -e
-dnf install -y epel-release
+#dnf install -y epel-release
 
 KERNEL_VER=$(uname -r)
-dnf install -y "kernel-devel-${KERNEL_VER}"
-dnf install -y gcc make rpm-build rpmdevtools dkms yum-utils kernel-abi-stablelists kernel-rpm-macros udev
+#dnf install -y "kernel-devel-${KERNEL_VER}"
+dnf install -y gcc make rpm-build rpmdevtools dkms dnf-utils kernel-abi-stablelists kernel-rpm-macros udev
 
 rpmdev-setuptree
 
