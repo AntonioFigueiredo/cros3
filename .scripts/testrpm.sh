@@ -12,7 +12,7 @@ fi
 
 for rpm in rpmPkgs/*.rpm; do
   echo "Installing $rpm"
-  dnf -y install "./$rpm" || ERRCODE=$?
+  dnf -y install "$rpm" || ERRCODE=$?
 done
 
 dkms status | grep cros3
