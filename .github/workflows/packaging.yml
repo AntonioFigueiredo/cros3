@@ -160,7 +160,7 @@ jobs:
         run: dnf install -y epel-release
       
       - name: Install Build Tools
-        run: dnf install -y gcc make rpm-build dkms
+        run: dnf install -y gcc make rpm-build rpmdevtools dkms dnf-utils kernel-abi-stablelists kernel-rpm-macros udev
 
       - name: Build RPM on ${{ matrix.container }}
         run: ./source_dir/.scripts/buildrpm.sh
@@ -193,7 +193,7 @@ jobs:
         with:
           name: rpm-artifacts
           path: pkgs/
-          
+
       - name: Install EPEL
         run: dnf install -y epel-release
 

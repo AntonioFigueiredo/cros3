@@ -1,8 +1,8 @@
 #!/bin/bash -x
 set -e
 
-dnf install -y kernel-devel kernel-headers
-dnf install -y gcc make rpm-build rpmdevtools dkms dnf-utils kernel-abi-stablelists kernel-rpm-macros udev
+#dnf install -y kernel-devel kernel-headers
+#dnf install -y gcc make rpm-build rpmdevtools dkms dnf-utils kernel-abi-stablelists kernel-rpm-macros udev
 
 rpmdev-setuptree
 
