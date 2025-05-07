@@ -193,6 +193,9 @@ jobs:
         with:
           name: rpm-artifacts
           path: pkgs/
+          
+      - name: Install EPEL
+        run: dnf install -y epel-release
 
       - name: Install DKMS
         run: dnf install -y dkms
