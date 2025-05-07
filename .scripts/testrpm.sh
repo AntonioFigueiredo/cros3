@@ -25,4 +25,10 @@ if [ $ERRCODE -ne 0 ]; then
   exit $ERRCODE
 fi
 
-dkms status | grep cros3
+if dkms status | grep -q cros3; then
+  echo "SUCCESS: cros3 DKMS module is installed."
+  exit 0  # Force success if module exists
+else
+  echo "ERROR: cros3 DKMS module not found!"
+  exit 1
+fi
