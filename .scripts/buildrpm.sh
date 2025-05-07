@@ -34,7 +34,6 @@ rpmbuild -ba cros3.spec --define "kernel_version ${KERNEL_VERSION}"
 #cd ~
 #find
 #ls -la
-
 mkdir -p ${GITHUB_WORKSPACE}/rpm-artifacts
 cp -r ~/rpmbuild/RPMS ${GITHUB_WORKSPACE}/rpm-artifacts/
 cp -r ~/rpmbuild/SRPMS ${GITHUB_WORKSPACE}/rpm-artifacts/
