@@ -8,6 +8,8 @@ URL:            https://github.com/BGO-OD/cros3
 Source0:        %{name}-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
+%define debug_package %{nil}
+
 %description
 Kernel driver for the cros3 module
 
