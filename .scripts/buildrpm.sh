@@ -15,7 +15,7 @@ tar cjf cros3-${VERSION}.tar.bz2 cros3-${VERSION}
 cp *.tar.bz2 ~/rpmbuild/SOURCES/
 cp source_dir/*.spec .
 
-dnf-builddep -y cros3.spec
+dnf builddep -y cros3.spec
 
 rpmbuild -ba cros3.spec
 
