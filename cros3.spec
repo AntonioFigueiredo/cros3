@@ -18,7 +18,7 @@ Kernel driver for the cros3 module
 
 %build
 echo "DEBUG: kernel_version macro = %{kernel_version}"
-make -C /lib/modules/%{kernel_version}/build M=$PWD modules
+make -C /lib/modules/%{kernel_version}/build M=$PWD modules EXTRA_CFLAGS='-DRHEL_KERNEL'
 
 %install
 mkdir -p %{buildroot}/lib/modules/%{kernel_version}/extra
