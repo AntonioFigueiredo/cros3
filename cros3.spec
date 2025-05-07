@@ -5,7 +5,7 @@ Summary:        cros3 kernel module
 Version:        0.1
 Release:        0%{?dist}
 URL:            https://github.com/BGO-OD/cros3
-Source0:        %{name}-%{version}.tar.bz2
+Source0:        cros3-0.1.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
