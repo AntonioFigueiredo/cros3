@@ -1,9 +1,6 @@
 #!/bin/bash -x
 set -e
-#dnf install -y epel-release
 
-#KERNEL_VER=$(uname -r)
-#dnf install -y "kernel-devel-${KERNEL_VER}"
 dnf install -y kernel-devel kernel-headers
 dnf install -y gcc make rpm-build rpmdevtools dkms dnf-utils kernel-abi-stablelists kernel-rpm-macros udev
 
@@ -31,9 +28,6 @@ fi
 
 rpmbuild -ba cros3.spec --define "kernel_version ${KERNEL_VERSION}"
 
-#cd ~
-#find
-#ls -la
 mkdir -p ${GITHUB_WORKSPACE}/rpm-artifacts
 cp -r ~/rpmbuild/RPMS ${GITHUB_WORKSPACE}/rpm-artifacts/
 cp -r ~/rpmbuild/SRPMS ${GITHUB_WORKSPACE}/rpm-artifacts/

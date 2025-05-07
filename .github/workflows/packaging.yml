@@ -195,7 +195,7 @@ jobs:
           path: pkgs/
 
       - name: Install DKMS
-        run: yum install -y dkms
+        run: dnf install -y dkms
   
       - name: Install package and compile on ${{ matrix.container }}
         run: ./source_dir/.scripts/testrpm.sh
