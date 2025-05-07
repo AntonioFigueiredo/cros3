@@ -199,9 +199,6 @@ jobs:
 
       - name: Install DKMS
         run: dnf install -y dkms
-
-      - name: test
-        run: ls -l ./source_dir/.scripts/buildrpm.sh ./source_dir/.scripts/testrpm.sh
   
       - name: Install package and compile on ${{ matrix.container }}
         run: ./source_dir/.scripts/testrpm.sh

@@ -10,7 +10,7 @@ if [ -z "$(ls -A rpmPkgs/*.rpm 2>/dev/null)" ]; then
   exit 1
 fi
 
-for rpm in pkgs/*.rpm; do
+for rpm in rpmPkgs/*.rpm; do
   echo "Installing $rpm"
   dnf -y install "./$rpm" || ERRCODE=$?
 done
