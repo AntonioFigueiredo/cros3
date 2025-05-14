@@ -16,17 +16,6 @@ Kernel driver for the cros3 module
 %prep
 %setup -q
 
-#%build
-#echo "DEBUG: kernel_version macro = %{kernel_version}"
-#make -C /lib/modules/%{kernel_version}/build M=$PWD modules EXTRA_CFLAGS='-DRHEL_KERNEL'
-
-#%install
-#mkdir -p %{buildroot}/lib/modules/%{kernel_version}/extra
-#install -m 644 cros3.ko %{buildroot}/lib/modules/%{kernel_version}/extra/
-
-#%files
-#/lib/modules/*/extra/cros3.ko
-
 %build
 for kver in $(ls /usr/src/kernels); do
     mkdir -p obj/$kver
