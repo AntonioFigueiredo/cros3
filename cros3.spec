@@ -33,7 +33,7 @@ done
 find %{buildroot}/lib/modules -name '*.ko' -exec strip --strip-unneeded {} +
 
 %files
-%defattr(-,root,root,-)
-/lib/modules/*/extra/*.ko
+/lib/modules/*/extra/cros3.ko
+
 
 %changelog
