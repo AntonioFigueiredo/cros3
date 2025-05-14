@@ -25,6 +25,11 @@ if [ $ERRCODE -ne 0 ]; then
   exit $ERRCODE
 fi
 
+dkms status
+
+find /var/lib/dkms/ -iname "make.log" -exec grep -H . {} \;
+exit ${ERRCODE}
+
 # if dkms status | grep -q cros3; then
 #   echo "SUCCESS: cros3 DKMS module is installed."
 #   exit 0  # Force success if module exists
