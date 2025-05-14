@@ -29,11 +29,14 @@ mkdir -p %{buildroot}/lib/modules
 for kver in $(ls /usr/src/kernels); do
     make -C /usr/src/kernels/$kver M=$PWD/obj/$kver modules_install INSTALL_MOD_PATH=%{buildroot}
 done
-# Strip unneeded symbols
-find %{buildroot}/lib/modules -name '*.ko' -exec strip --strip-unneeded {} +
+
+# Remove kernel-generated metadata files
+find %{buildroot}/lib/modules -type f \
+  \( -name 'modules.*' ! -name '*.ko' \) -delete
 
 %files
-/lib/modules/*/extra/cros3.ko
+%defattr(-,root,root)
+%{_prefix}/lib/modules/*/extra/cros3.ko
 
 
 %changelog
