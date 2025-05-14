@@ -12,18 +12,18 @@ cp source_dir/*.spec .
 
 dnf builddep -y cros3.spec
 
-KERNEL_VERSION=$(rpm -q --qf '%{VERSION}-%{RELEASE}.%{ARCH}' kernel-devel)
-echo "DEBUG: Using KERNEL_VERSION=$KERNEL_VERSION"
+# KERNEL_VERSION=$(rpm -q --qf '%{VERSION}-%{RELEASE}.%{ARCH}' kernel-devel)
+# echo "DEBUG: Using KERNEL_VERSION=$KERNEL_VERSION"
 
-KERNEL_SRC="/usr/src/kernels/${KERNEL_VERSION}"
-KERNEL_BUILD="/lib/modules/${KERNEL_VERSION}/build"
-if [ ! -e "$KERNEL_BUILD" ]; then
-  echo "Creating symlink: $KERNEL_BUILD -> $KERNEL_SRC"
-  mkdir -p "$(dirname "$KERNEL_BUILD")"
-  ln -s "$KERNEL_SRC" "$KERNEL_BUILD"
-fi
+# KERNEL_SRC="/usr/src/kernels/${KERNEL_VERSION}"
+# KERNEL_BUILD="/lib/modules/${KERNEL_VERSION}/build"
+# if [ ! -e "$KERNEL_BUILD" ]; then
+#   echo "Creating symlink: $KERNEL_BUILD -> $KERNEL_SRC"
+#   mkdir -p "$(dirname "$KERNEL_BUILD")"
+#   ln -s "$KERNEL_SRC" "$KERNEL_BUILD"
+# fi
 
-rpmbuild -ba cros3.spec --define "kernel_version ${KERNEL_VERSION}"
+rpmbuild -ba cros3.spec #--define "kernel_version ${KERNEL_VERSION}"
 
 mkdir -p ${GITHUB_WORKSPACE}/rpm-artifacts
 cp -r ~/rpmbuild/RPMS ${GITHUB_WORKSPACE}/rpm-artifacts/
