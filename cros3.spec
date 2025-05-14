@@ -16,15 +16,35 @@ Kernel driver for the cros3 module
 %prep
 %setup -q
 
+#%build
+#echo "DEBUG: kernel_version macro = %{kernel_version}"
+#make -C /lib/modules/%{kernel_version}/build M=$PWD modules EXTRA_CFLAGS='-DRHEL_KERNEL'
+
+#%install
+#mkdir -p %{buildroot}/lib/modules/%{kernel_version}/extra
+#install -m 644 cros3.ko %{buildroot}/lib/modules/%{kernel_version}/extra/
+
+#%files
+#/lib/modules/*/extra/cros3.ko
+
 %build
-echo "DEBUG: kernel_version macro = %{kernel_version}"
-make -C /lib/modules/%{kernel_version}/build M=$PWD modules EXTRA_CFLAGS='-DRHEL_KERNEL'
+for kver in $(ls /usr/src/kernels); do
+    mkdir -p obj/$kver
+    cp -a source/* obj/$kver/
+    make -C /usr/src/kernels/$kver M=$PWD/obj/$kver modules
+done
 
 %install
-mkdir -p %{buildroot}/lib/modules/%{kernel_version}/extra
-install -m 644 cros3.ko %{buildroot}/lib/modules/%{kernel_version}/extra/
+rm -rf %{buildroot}
+mkdir -p %{buildroot}/lib/modules
+for kver in $(ls /usr/src/kernels); do
+    make -C /usr/src/kernels/$kver M=$PWD/obj/$kver modules_install INSTALL_MOD_PATH=%{buildroot}
+done
+# Strip unneeded symbols
+find %{buildroot}/lib/modules -name '*.ko' -exec strip --strip-unneeded {} +
 
 %files
-/lib/modules/*/extra/cros3.ko
+%defattr(-,root,root,-)
+/lib/modules/*/extra/*.ko
 
 %changelog
