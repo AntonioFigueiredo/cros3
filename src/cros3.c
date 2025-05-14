@@ -295,7 +295,7 @@ static int __init cros3_init_module (void)
 	}
 	cros3_major = MAJOR(devreg);
 
-	#if defined(class_create) && !defined(CONFIG_CLASS_CREATE_TAKES_MODULE)
+	#if defined(RHEL_KERNEL)
     	cros3_class = class_create("cros3");
 	#else
     	cros3_class = class_create(THIS_MODULE, "cros3");
