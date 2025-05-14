@@ -36,7 +36,7 @@ find %{buildroot}/lib/modules -type f \
 
 %files
 %defattr(-,root,root)
-%{_prefix}/lib/modules/*/extra/cros3.ko
+/lib/modules/*/extra/cros3.ko
 
 
 %changelog
