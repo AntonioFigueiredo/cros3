@@ -27,7 +27,7 @@ cd ${WORKING_DIR}/${SRC_DIR_NAME}
 git archive HEAD | bzip2 > ../cros3_0.1.0.orig.tar.bz2
 
 # Add deb-src entries
-s> /etc/apt/sources.list.d/deb-src.list # empty the file first
+> /etc/apt/sources.list.d/deb-src.list # empty the file first
 for file in /etc/apt/sources.list.d/*.list; do
     sed -n '/^deb\s/s//deb-src /p' "$file" >> /etc/apt/sources.list.d/deb-src.list # >> appends instead of overwriting
 done
