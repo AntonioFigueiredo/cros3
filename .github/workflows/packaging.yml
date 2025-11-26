@@ -1,7 +1,7 @@
 name: Packaging
 # Test the packaging workflow on push
 on:
-  push
+  workflow_call
 
 env:
   RELEASE: unstable

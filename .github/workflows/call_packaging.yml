@@ -1,0 +1,10 @@
+name: Call Packaging Workflow
+
+on:
+    push
+
+jobs:
+    call-packaging:
+        uses: AntonioFigueiredo/PackagingDebRpm/.github/workflows/packaging.yml@main
+        with:
+            project_name: cros3
