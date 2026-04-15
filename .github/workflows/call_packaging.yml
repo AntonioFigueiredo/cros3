@@ -6,10 +6,12 @@ on:
 jobs:
     call-packaging:
         uses: AntonioFigueiredo/PackagingDebRpm/.github/workflows/packaging.yml@main
+        secrets: inherit
         with:
             project_name: cros3
-            build_rpm: false
+            build_rpm: true
             build_deb: true
+            sign_packages: true
             
             deb_matrix: '{"container":["debian:stable","debian:bullseye","debian:unstable","debian:testing"]}'
             rpm_matrix: '{"container":["rockylinux:9"]}'
