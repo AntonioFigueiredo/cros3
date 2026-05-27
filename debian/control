@@ -11,7 +11,7 @@ Vcs-Git: https://github.com/BGO-OD/cros3.git
 
 Package: cros3-dkms
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, dkms, make, gcc
 Recommends: linux-headers-amd64 | linux-headers-686-pae | linux-headers-686 | linux-headers
 Provides: cros3
 Description: kernel module for cros3
