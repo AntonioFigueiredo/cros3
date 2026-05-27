@@ -1,0 +1,7 @@
+[cros3]
+name=cros3 RPM Repository
+baseurl=https://antoniofigueiredo.github.io/cros3/rpm/rockylinux-9/packages/
+enabled=1
+gpgcheck=1
+repo_gpgcheck=0
+gpgkey=https://antoniofigueiredo.github.io/cros3/rpm/rockylinux-9/RPM-GPG-KEY-cros3
